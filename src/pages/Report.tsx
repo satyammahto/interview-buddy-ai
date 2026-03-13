@@ -19,6 +19,7 @@ const dimensionLabels: Record<string, string> = {
 
 const Report = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const store = useInterviewStore();
   const [expandedQ, setExpandedQ] = useState<number | null>(null);
 
