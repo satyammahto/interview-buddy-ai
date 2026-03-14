@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { useInterviewStore, InterviewMode, Difficulty } from '@/store/interview-store';
 import { supabase } from '@/integrations/supabase/client';
-import { Upload, FileText, Code, Users, Heart, Flame, ArrowRight, Loader2 } from 'lucide-react';
+import { Upload, FileText, Code, Users, Heart, Flame, ArrowRight, Loader2, ChevronLeft } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const modes: { id: InterviewMode; label: string; icon: typeof Code; description: string }[] = [
@@ -106,7 +106,16 @@ const Setup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4">
+    <div className="min-h-screen bg-background py-12 px-4 relative">
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        onClick={() => navigate('/')} 
+        className="absolute top-4 left-4 sm:top-8 sm:left-8 rounded-full"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </Button>
+
       <div className="max-w-2xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="font-display text-3xl sm:text-4xl font-bold mb-2">Set Up Your Interview</h1>

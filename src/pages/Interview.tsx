@@ -202,6 +202,14 @@ const Interview = () => {
     setIsListening(false);
     setCurrentTranscript('');
     setInterimTranscript('');
+    
+    // Stop any AI speech immediately when skipping
+    speechSynthesis.cancel();
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    setIsSpeaking(false);
 
     if (store.currentQuestionIndex < totalQuestions - 1) {
       store.nextQuestion();
@@ -217,10 +225,15 @@ const Interview = () => {
       recognitionRef.current.stop();
       recognitionRef.current = null;
     }
+    
+    // Stop any AI speech immediately when ending interview
     speechSynthesis.cancel();
     if (audioRef.current) {
       audioRef.current.pause();
+      audioRef.current.currentTime = 0;
     }
+    setIsSpeaking(false);
+    
     store.setInterviewActive(false);
     navigate('/report');
   };

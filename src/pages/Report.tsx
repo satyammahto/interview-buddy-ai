@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { useInterviewStore } from '@/store/interview-store';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';
-import { RotateCcw, Share2, ChevronDown, ChevronUp, CheckCircle2, AlertCircle } from 'lucide-react';
+import { RotateCcw, Share2, ChevronDown, ChevronUp, CheckCircle2, AlertCircle, ChevronLeft } from 'lucide-react';
 import { useState } from 'react';
 
 const dimensionLabels: Record<string, string> = {
@@ -63,7 +63,16 @@ const Report = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4">
+    <div className="min-h-screen bg-background py-12 px-4 relative">
+      <Button 
+        variant="ghost" 
+        size="icon" 
+        onClick={() => { store.reset(); navigate('/'); }} 
+        className="absolute top-4 left-4 sm:top-8 sm:left-8 rounded-full"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </Button>
+
       <div className="max-w-4xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="font-display text-3xl sm:text-4xl font-bold mb-2">Interview Report</h1>
